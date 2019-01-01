@@ -1,0 +1,31 @@
+version: "3.1"
+services:
+  db:
+    build: "./db"
+    container_name: "db"
+    restart: "always"
+    volumes:
+      - "./data/db/:/var/lib/postgresql/data"
+    environment:
+      PGDATA: "/var/lib/postgresql/data/db-files"
+      POSTGRES_DB: "socialNetworkDB"
+      POSTGRES_PASSWORD: "SocialNetwork123#"
+      PGDATA: "/var/lib/postgresql/data/db-files/"
+    ports:
+      - "5433:5432"
+
+  adminer:
+    image: "adminer"
+    container_name: "adminer"
+    restart: "always"
+
+  web:
+    build: "./SocialNetwork"
+    container_name: "web"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./SocialNetwork:/SocialNetwork
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
