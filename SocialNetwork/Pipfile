@@ -4,11 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
-django = "*"
+django = "==2.0.8"
 psycopg2 = "*"
 psycopg2-binary = "*"
+django-extensions = "*"
+django-hstore = "*"
+yapf = "*"
 
 [requires]
 python_version = "3.6"
