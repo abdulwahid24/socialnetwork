@@ -15,10 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+
+schema_view = get_swagger_view(title='TradeCore - Social Network')
 
 urlpatterns = [
     path('', admin.site.urls),
-    path('', include('authentication.urls'))
+    path('', include('authentication.urls')),
+    path('docs/', schema_view),
+    path('api-token-auth/', obtain_jwt_token),
+    path('api-token-refresh/', refresh_jwt_token),
+    path('api-token-verify/', verify_jwt_token),
 ]
 
 admin.site.login_template = 'login.html'

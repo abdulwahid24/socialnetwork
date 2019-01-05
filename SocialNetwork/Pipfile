@@ -15,8 +15,10 @@ django-hstore = "*"
 yapf = "*"
 email-hunter-python = "*"
 clearbit = "*"
-fullcontact-py = "*"
-fullcontact = "*"
+djangorestframework = "*"
+django-rest-auth = "*"
+django-rest-swagger = "*"
+djangorestframework-jwt = "*"
 
 [requires]
 python_version = "3.6"
