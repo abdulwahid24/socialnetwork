@@ -18,6 +18,8 @@ services:
     image: "adminer"
     container_name: "adminer"
     restart: "always"
+    ports:
+      - "8081:8080"
 
   web:
     build: "./SocialNetwork"

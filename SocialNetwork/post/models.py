@@ -1,7 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django_extensions.db.models import TimeStampedModel
 from django_hstore import hstore
+
+from authentication.models import User
+
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
 
 # Create your models here.
 

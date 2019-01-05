@@ -26,6 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authentication.User'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,8 +41,9 @@ INSTALLED_APPS = [
     # third party libraries
     'django_hstore',
 
-    # applications
-    'post'
+    # django applications
+    'authentication',
+    'post',
 ]
 
 MIDDLEWARE = [
