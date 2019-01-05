@@ -15,6 +15,8 @@ django-hstore = "*"
 yapf = "*"
 email-hunter-python = "*"
 clearbit = "*"
+fullcontact-py = "*"
+fullcontact = "*"
 
 [requires]
 python_version = "3.6"
