@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('admin/', include('authentication.urls'))
+    path('', admin.site.urls),
+    path('', include('authentication.urls'))
 ]
+
+admin.site.login_template = 'login.html'
+admin.site.index_title = 'TradeCore'
+admin.site.site_title = 'Social Network'
+admin.site.site_header = 'Social Network'
