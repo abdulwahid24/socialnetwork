@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+from django_hstore.fields import DictionaryField
 
 # Create your models here.
 
@@ -63,8 +64,6 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
             'Unselect this instead of deleting clients.'),
     )
     is_superuser = models.BooleanField(default=False)
-    first_name = models.CharField(_('first name'), max_length=255)
-    last_name = models.CharField(_('last_name'), max_length=255)
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
@@ -72,14 +71,26 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
     class Meta:
         db_table = 'user'
 
+    def __str__(self):
+        if not hasattr(self, 'profile'):
+            return self.email
+        fullname = self.profile.data.get('fullName', '')
+        return '{0}'.format(fullname)
+
+
+class Profile(TimeStampedModel):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    data = DictionaryField()
+
+    class Meta:
+        db_table = 'user_profile'
+
     @property
     def fullname(self):
-        # The user is identified by their email address
-        if all([self.first_name, self.last_name]):
-            fullname = u'{0} {1}'.format(self.first_name, self.last_name)
-        else:
-            fullname = self.email
-        return fullname
+        fullname = self.data.get('fullName', '')
+        return '{0}'.format(fullname)
 
     def __str__(self):
-        return '{0}-{1}'.format(self.id, self.fullname)
+        if not self.fullname:
+            return self.data
+        return self.fullname

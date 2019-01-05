@@ -61,7 +61,9 @@ ROOT_URLCONF = 'SocialNetwork.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates/admin'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,8 +85,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'socialNetworkDB',
-        'HOST': 'db',
-        'PORT': '5432',
+        'HOST': '0.0.0.0',
+        'PORT': '5433',
         'USER': 'postgres',
         'PASSWORD': 'SocialNetwork123#'
     }
@@ -129,3 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# API Integrations
+
+CLEARBIT_API_KEY = 'sk_9b4c04532719407ae3ffcd8b14dcd411'

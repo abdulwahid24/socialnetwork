@@ -11,27 +11,30 @@ from authentication.models import User
 
 
 class Post(TimeStampedModel):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        User, related_name='posts', on_delete=models.CASCADE)
     post = hstore.DictionaryField()
 
     objects = hstore.HStoreManager()
 
     class Meta:
         db_table = 'user_post'
-        verbose_name = "User Post"
-        verbose_name_plural = "User Posts"
+        verbose_name = "post"
+        verbose_name_plural = "posts"
 
     def __str__(self):
-        return "Post: %d" % self.id
+        return '{}'.format(self.post)
 
 
 class PostLike(TimeStampedModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, related_name='post_likes', on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        Post, related_name='likes', on_delete=models.CASCADE)
     like = models.BooleanField()
 
     class Meta:
         db_table = 'user_post_like'
-        verbose_name = "User Post Like"
-        verbose_name_plural = "User Post Likes"
+        verbose_name = "Post Like"
+        verbose_name_plural = "Post Likes"
         unique_together = ("user", "post")

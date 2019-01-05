@@ -13,6 +13,8 @@ psycopg2-binary = "*"
 django-extensions = "*"
 django-hstore = "*"
 yapf = "*"
+email-hunter-python = "*"
+clearbit = "*"
 
 [requires]
 python_version = "3.6"
