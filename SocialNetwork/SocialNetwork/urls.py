@@ -24,6 +24,7 @@ schema_view = get_swagger_view(title='TradeCore - Social Network')
 urlpatterns = [
     path('', admin.site.urls),
     path('', include('authentication.urls')),
+    path('', include('bot.urls')),
     path('', include('post.urls')),
     path('docs/', schema_view),
 ] + static(
