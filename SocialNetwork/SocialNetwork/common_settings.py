@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party libraries
-    'storages',
     'django_hstore',
+    'storages',
     'rest_framework',
     'rest_framework_swagger',
 
@@ -83,20 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'SocialNetwork.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'socialNetworkDB',
-        'HOST': '0.0.0.0',
-        'PORT': '5433',
-        'USER': 'postgres',
-        'PASSWORD': 'SocialNetwork123#'
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
