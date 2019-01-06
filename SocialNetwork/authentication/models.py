@@ -72,25 +72,32 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
         db_table = 'user'
 
     def __str__(self):
-        if not hasattr(self, 'profile'):
+        try:
+            fullname = self.profile.data.get('fullName', '')
+            return '{0}'.format(fullname)
+        except AttributeError:
             return self.email
-        fullname = self.profile.data.get('fullName', '')
-        return '{0}'.format(fullname)
 
 
 class Profile(TimeStampedModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    data = DictionaryField()
+    data = DictionaryField(null=True)
 
     class Meta:
         db_table = 'user_profile'
 
     @property
     def fullname(self):
-        fullname = self.data.get('fullName', '')
-        return '{0}'.format(fullname)
+        try:
+            fullname = self.data.get('fullName', '')
+            return '{0}'.format(fullname)
+        except AttributeError:
+            return self.user.email
 
     def __str__(self):
-        if not self.fullname:
-            return self.data
-        return self.fullname
+        try:
+            if not self.fullname:
+                return self.data
+            return self.fullname
+        except AttributeError:
+            return self.user.email

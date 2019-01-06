@@ -126,6 +126,9 @@ REST_FRAMEWORK = {
     ),
 }
 
+LOGIN_URL = 'admin:login'
+LOGOUT_URL = 'admin:logout'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
