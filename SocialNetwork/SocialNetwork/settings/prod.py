@@ -6,6 +6,8 @@ from SocialNetwork.common_settings import *
 # NOTE:
 # As of now prod is same as dev_lambda
 
+DEBUG = False
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

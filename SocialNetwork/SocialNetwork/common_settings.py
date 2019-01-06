@@ -24,10 +24,7 @@ SECRET_KEY = '2(#@pi%2!n-c1n+^(hch%h8i%v((zhyr7nkm^!f_0p)+yw9thj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost', 'testserver',
-    'nsayjch5mj.execute-api.ap-south-1.amazonaws.com'
-]
+ALLOWED_HOSTS = ['localhost', 'testserver', 'social-network.abdulwahid.info']
 
 AUTH_USER_MODEL = 'authentication.User'
 
