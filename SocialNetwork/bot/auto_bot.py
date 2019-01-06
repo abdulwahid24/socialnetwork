@@ -94,8 +94,6 @@ class BotConfig:
                     likes += 1
         except StopIteration:
             self.stop()
-        except Exception as e:
-            log.exception(e)
 
     def generate_random_emails(self):
         try:

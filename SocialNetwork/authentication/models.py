@@ -96,8 +96,6 @@ class Profile(TimeStampedModel):
 
     def __str__(self):
         try:
-            if not self.fullname:
-                return self.data
             return self.fullname
         except AttributeError:
             return self.user.email
