@@ -24,7 +24,10 @@ SECRET_KEY = '2(#@pi%2!n-c1n+^(hch%h8i%v((zhyr7nkm^!f_0p)+yw9thj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'testserver']
+ALLOWED_HOSTS = [
+    'localhost', 'testserver',
+    'nsayjch5mj.execute-api.ap-south-1.amazonaws.com'
+]
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party libraries
+    'storages',
     'django_hstore',
     'rest_framework',
     'rest_framework_swagger',
@@ -145,10 +149,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# AWS S3 Settings for static files
+AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'Cache-Control': 'max-age=94608000',
+}
+
+AWS_STORAGE_BUCKET_NAME = 'tradecore-social-network'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_CLOUDFRONT_DOMAIN = 'dys62g3nirogi.cloudfront.net'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATICFILES_LOCATION = 'static'
+STATIC_ROOT = '/%s/' % STATICFILES_LOCATION
+STATIC_URL = '/%s/%s/' % (AWS_CLOUDFRONT_DOMAIN, STATICFILES_LOCATION)
+STATICFILES_STORAGE = 'authentication.utility.StaticStorage'
 
 # API Integrations
 
 CLEARBIT_API_KEY = 'sk_571ac527b88a2e1e6a4f7feea48b81f1'
-
 FULLCONTACT_API_KEY = '6C6vfwgivF9RfA6fTV48gTT6KeVfhP87'

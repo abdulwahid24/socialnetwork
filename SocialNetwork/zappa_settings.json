@@ -1,0 +1,11 @@
+{
+    "dev": {
+        "aws_region": "ap-south-1",
+        "django_settings": "SocialNetwork.settings",
+        "profile_name": "default",
+        "project_name": "socialnetwork",
+        "runtime": "python3.6",
+        "s3_bucket": "tradecore-social-network",
+        "remote_env": "s3://zappa-aws-credentials/aws-credentials.json"
+    }
+}

@@ -20,6 +20,10 @@ django-rest-auth = "*"
 django-rest-swagger = "*"
 djangorestframework-jwt = "*"
 djangorestframework-hstore = "*"
+zappa = "*"
+django-storages = "*"
+boto3 = "*"
+boto = "*"
 
 [requires]
 python_version = "3.6"

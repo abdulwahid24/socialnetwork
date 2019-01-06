@@ -18,11 +18,8 @@ class SignUp(CreateView):
 
 class SignUpAPIView(ModelViewSet):
     """
-    API View that returns a refreshed token (with new expiration) based on
-    existing token
-
-    If 'orig_iat' field (original issued-at-time) is found, will first check
-    if it's within expiration window, then copy it to the new token
+    SignUp API allows user to signup into the application using email and password.
+    Once, you are signed up, Please proceed to login or session login.
     """
     queryset = User.objects.all()
     serializer_class = SignUpSerializer

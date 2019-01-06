@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
 
@@ -24,7 +26,8 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('', include('post.urls')),
     path('docs/', schema_view),
-]
+] + static(
+    settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 admin.site.login_template = 'login.html'
 admin.site.index_title = 'TradeCore'
