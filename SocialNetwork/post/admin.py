@@ -42,4 +42,4 @@ class PostLikeAdmin(StaffAllowedAdmin, admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Post, PostAdmin)
-# admin.site.register(PostLike, PostLikeAdmin)
+admin.site.register(PostLike, PostLikeAdmin)
