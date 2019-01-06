@@ -24,7 +24,7 @@ SECRET_KEY = '2(#@pi%2!n-c1n+^(hch%h8i%v((zhyr7nkm^!f_0p)+yw9thj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'testserver']
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -149,6 +149,6 @@ STATIC_URL = '/static/'
 
 # API Integrations
 
-CLEARBIT_API_KEY = 'sk_9b4c04532719407ae3ffcd8b14dcd411'
+CLEARBIT_API_KEY = 'sk_571ac527b88a2e1e6a4f7feea48b81f1'
 
 FULLCONTACT_API_KEY = '6C6vfwgivF9RfA6fTV48gTT6KeVfhP87'
