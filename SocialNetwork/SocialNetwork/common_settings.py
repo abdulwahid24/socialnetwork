@@ -139,8 +139,8 @@ AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
 }
 
 AWS_STORAGE_BUCKET_NAME = 'tradecore-social-network'
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_ACCESS_KEY_ID = os.environ.get('MY_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('MY_SECRET_ACCESS_KEY')
 AWS_CLOUDFRONT_DOMAIN = 'dys62g3nirogi.cloudfront.net'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
