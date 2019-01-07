@@ -10,6 +10,7 @@ from django.conf import settings
 from django.db.models import Count, Max, Q
 from collections import namedtuple
 from rest_framework.test import APIClient
+from concurrent.futures import ThreadPoolExecutor
 
 from authentication.models import User
 from post.models import Post
@@ -132,18 +133,17 @@ class AutoBot(BotConfig):
         self.activity_post_like()
 
     def activity_signup(self):
-        for email in self.new_user_emails:
-            log.info("Signing up %s" % email)
-            self._perform_signup(email)
+        with ThreadPoolExecutor() as executor:
+            executor.map(self._perform_signup, self.new_user_emails)
 
     def activity_post_create(self):
-        for email in self.new_user_emails:
-            self._create_random_post(email)
+        with ThreadPoolExecutor() as executor:
+            executor.map(self._create_random_post, self.new_user_emails)
 
     def activity_post_like(self):
         post_users = Post.objects.annotate(total_likes=Count('likes')).filter(
             Q(
                 Q(total_likes__lt=self.config.max_likes_per_user)
                 | Q(total_likes__gt=0))).distinct().values('owner')
-        for user in post_users:
-            self._create_post_like(user['owner'])
+        with ThreadPoolExecutor() as executor:
+            executor.map(self._create_post_like, post_users)

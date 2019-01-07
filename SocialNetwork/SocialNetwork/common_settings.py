@@ -24,7 +24,10 @@ SECRET_KEY = '2(#@pi%2!n-c1n+^(hch%h8i%v((zhyr7nkm^!f_0p)+yw9thj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'testserver', 'social-network.abdulwahid.info']
+ALLOWED_HOSTS = [
+    'localhost', 'testserver', 'social-network.abdulwahid.info',
+    'dev.social-network.abdulwahid.info'
+]
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -151,5 +154,5 @@ STATICFILES_STORAGE = 'authentication.utility.StaticStorage'
 
 # API Integrations
 
-CLEARBIT_API_KEY = 'sk_571ac527b88a2e1e6a4f7feea48b81f1'
+CLEARBIT_API_KEY = 'sk_fad6ab670656d1b6bb01bb0084d673e9'
 FULLCONTACT_API_KEY = '6C6vfwgivF9RfA6fTV48gTT6KeVfhP87'
